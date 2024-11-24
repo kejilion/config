@@ -41,6 +41,7 @@ jobs:
           else
             echo "No new version"
             echo "updated=false" >> $GITHUB_ENV
+          fi
 
       - name: Save latest version
         if: env.updated == 'true'
