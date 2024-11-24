@@ -41,6 +41,7 @@ jobs:
           else
             echo "No new version"
             echo "updated=false" >> $GITHUB_ENV
+          fi  # 这里的 fi 是结束 if 语句块的地方
 
       - name: Save latest version
         if: env.updated == 'true'
