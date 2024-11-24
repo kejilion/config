@@ -3,7 +3,7 @@ name: Check WordPress Update
 on:
   schedule:
     # 每天检查一次更新（你可以根据需要调整时间）
-    - cron: '0 6 * * *'
+    - cron: '0 0 * * *'
   workflow_dispatch: # 手动触发
 
 jobs:
@@ -41,6 +41,7 @@ jobs:
           else
             echo "No new version"
             echo "updated=false" >> $GITHUB_ENV
+          fi
 
       - name: Save latest version
         if: env.updated == 'true'
