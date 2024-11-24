@@ -41,13 +41,14 @@ jobs:
           else
             echo "No new version"
             echo "updated=false" >> $GITHUB_ENV
-          fi
 
       - name: Save latest version
         if: env.updated == 'true'
         run: |
-          # 将最新的 WordPress ZIP 文件保存到指定目录
+          # 在当前仓库创建 wordpress 目录
           mkdir -p wordpress
+          
+          # 将最新的 WordPress ZIP 文件保存到指定目录
           mv latest-zh_CN.zip wordpress/latest.zip
 
           # 更新哈希文件
