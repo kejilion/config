@@ -41,7 +41,6 @@ jobs:
           else
             echo "No new version"
             echo "updated=false" >> $GITHUB_ENV
-          fi
 
       - name: Save latest version
         if: env.updated == 'true'
@@ -54,6 +53,15 @@ jobs:
 
           # 更新哈希文件
           echo "$latest_hash" > .github/wordpress_hash.txt
+
+      - name: Commit and push changes
+        if: env.updated == 'true'
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add wordpress/latest.zip .github/wordpress_hash.txt
+          git commit -m "Add latest WordPress version"
+          git push
 
       - name: Cleanup
         if: env.updated == 'false'
